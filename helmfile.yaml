@@ -1,0 +1,20 @@
+repositories:
+  - name: cloudposse-incubator
+    url: https://charts.cloudposse.com/incubator/
+
+templates:
+  default: &default
+    missingFileHandler: Warn
+    values:
+    - config/{{`{{ .Release.Name }}`}}/values.yaml
+    - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
+    secrets:
+    - secrets/{{`{{ .Release.Name }}`}}/secrets.yaml
+    - secrets/{{`{{ .Release.Name }}`}}/secrets.yaml.gotmpl
+
+releases:
+  - name: notejam
+    namespace: default
+    chart: cloudposse-incubator/monochart
+    version: 0.25.0
+    <<: *default
