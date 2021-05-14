@@ -25,10 +25,23 @@ service:
       internal: 8080
       external: 80
 
+probes:
+ readinessProbe:
+   httpGet:
+     path: /
+     port: http
+   initialDelaySeconds: 15
+
+
 ingress:
   default:
     enabled: true
     port: http
+    annotations:
+      nginx.ingress.kubernetes.io/affinity: "cookie"
+      nginx.ingress.kubernetes.io/session-cookie-name: "route"
+      nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+      nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
     hosts:
      "chllng.ianduffy.ie": /
      "notejam.chllng.ianduffy.ie": /

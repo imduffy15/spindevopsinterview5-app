@@ -82,6 +82,10 @@
             <artifactId>logback-jackson</artifactId>
             <version>0.1.5</version>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>
