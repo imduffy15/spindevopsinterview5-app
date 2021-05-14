@@ -1,0 +1,19 @@
+pipeline:
+  build_docker_image:
+    image: imduffy15/woodpecker-docker-plugin
+    registry: 803307717518.dkr.ecr.us-west-2.amazonaws.com
+    app_name: spindevopsinterview5-notejam
+    environment:
+      AWS_REGION: us-west-2
+    secrets: [aws_access_key_id, aws_secret_access_key]
+    when:
+      event: push
+  deploy:
+    image: imduffy15/woodpecker-helm-plugin
+    registry: 803307717518.dkr.ecr.us-west-2.amazonaws.com
+    app_name: spindevopsinterview5-notejam
+    environment:
+      AWS_REGION: us-west-2
+    when:
+      event: deployment
+    secrets: [aws_access_key_id, aws_secret_access_key, kubernetes_token, kubernetes_server, kubernetes_cert]

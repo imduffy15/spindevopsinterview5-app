@@ -23,16 +23,19 @@ service:
   ports:
     http:
       internal: 8080
-      external: 8080
+      external: 80
 
-# ingress:
-#   default:
-#     enabled: true
-#     port: http
-#     hosts:
-#      "TODO": /
-#      "www.TODO": /
-#     tls:
-#     - secretName: server-tls
-#      hosts:
-#      - TODO
+ingress:
+  default:
+    enabled: true
+    port: http
+    hosts:
+     "chllng.ianduffy.ie": /
+     "notejam.chllng.ianduffy.ie": /
+     "www.chllng.ianduffy.ie": /
+    tls:
+    - secretName: certificates-wildcard-cert
+      hosts:
+      - chllng.ianduffy.ie
+      - notejam.chllng.ianduffy.ie
+      - www.chllng.ianduffy.ie
