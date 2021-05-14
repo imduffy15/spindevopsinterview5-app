@@ -13,7 +13,7 @@ metadata:
 {{- with $ingress.labels }}
 {{ toYaml . | indent 4 }}
 {{- end }}
-{{ include "entrypoint.labels.standard" $root | indent 4 }}
+{{ include "entrypoint.labels" $root | indent 4 }}
     ingressName: {{ $name }}
   name: {{ include "entrypoint.fullname" $root }}-{{ $name }}
 spec:

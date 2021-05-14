@@ -9,9 +9,10 @@ pipeline:
     when:
       event: push
   deploy:
-    image: imduffy15/woodpecker-helm-plugin:820ce45
+    image: imduffy15/woodpecker-helm-plugin:825678f
     registry: 803307717518.dkr.ecr.us-west-2.amazonaws.com
     app_name: spindevopsinterview5-notejam
+    release_name: notejam
     environment:
       AWS_REGION: us-west-2
     when:
