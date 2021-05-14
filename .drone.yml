@@ -1,6 +1,6 @@
 pipeline:
   build_docker_image:
-    image: imduffy15/woodpecker-docker-plugin
+    image: imduffy15/woodpecker-docker-plugin:6d47272
     registry: 803307717518.dkr.ecr.us-west-2.amazonaws.com
     app_name: spindevopsinterview5-notejam
     environment:
@@ -9,7 +9,7 @@ pipeline:
     when:
       event: push
   deploy:
-    image: imduffy15/woodpecker-helm-plugin:825678f
+    image: imduffy15/woodpecker-helm-plugin:406d5cf
     registry: 803307717518.dkr.ecr.us-west-2.amazonaws.com
     app_name: spindevopsinterview5-notejam
     release_name: notejam
