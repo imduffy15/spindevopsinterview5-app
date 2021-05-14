@@ -1,41 +1,10 @@
-replicaCount: 3
-
-fullnameOverride: notejam
-nameOverride: notejam
-
-image:
-  repository: TODO
-  tag: latest
-
-secrets:
-  default:
-    enabled: true
-    mountPath: /config
-
-deployment:
-  enabled: true
-  affinity:
-    affinityRule: "ShouldBeOnDifferentNode"
-
-service:
-  enabled: true
-  type: ClusterIP
-  ports:
-    http:
-      internal: 8080
-      external: 80
-
-probes:
- readinessProbe:
-   httpGet:
-     path: /
-     port: http
-   initialDelaySeconds: 15
-
+fullnameOverride: notejam-entrypoint
+nameOverride: notejam-entrypoint
 
 ingress:
   default:
     enabled: true
+    serviceName: notejam-{{ .Values.color }}
     port: http
     annotations:
       nginx.ingress.kubernetes.io/affinity: "cookie"

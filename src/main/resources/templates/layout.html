@@ -98,5 +98,8 @@
 		style="position: absolute; top: 0; right: 0; border: 0;"
 		src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
 		alt="Fork me on GitHub" /></a>
+	<div th:inline="text" th:style="|width: 200px; background: ${@globals.getColor()}; position: absolute; top: 25px; left: -50px; text-align: center; line-height: 50px; letter-spacing: 1px; color: #f0f0f0; transform: rotate(-45deg); -webkit-transform: rotate(-45deg);|">
+		[[${@globals.getColor()}]]
+	</div>
 </body>
 </html>

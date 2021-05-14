@@ -10,11 +10,25 @@ templates:
     - config/{{`{{ .Release.Name }}`}}/values.yaml.gotmpl
     secrets:
     - secrets/{{`{{ .Release.Name }}`}}/secrets.yaml
-    - secrets/{{`{{ .Release.Name }}`}}/secrets.yaml.gotmpl
+
+environments:
+    blue:
+        values:
+            - color: blue
+    green:
+        values:
+            - color: green
 
 releases:
-  - name: notejam
+  - name: notejam-{{ .Environment.Name }}
     namespace: default
     chart: cloudposse-incubator/monochart
     version: 0.25.0
+    values:
+    - config/notejam/values.yaml.gotmpl
+    secrets:
+    - secrets/notejam/secrets.yaml
+  - name: notejam-entrypoint
+    namespace: default
+    chart: ./charts/entrypoint
     <<: *default

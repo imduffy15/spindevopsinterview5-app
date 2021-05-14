@@ -135,4 +135,17 @@ public class Application {
         return service;
     }
 
+    @Bean(name = "globals")
+    public Globals globals (@Value("${color}") String color) {
+        return new Globals() {
+            @Override
+            public String getColor() {
+                return color;
+            }
+        };
+    }
+
+    public interface Globals {
+        String getColor();
+    }
 }

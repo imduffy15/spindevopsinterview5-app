@@ -1,0 +1,17 @@
+ingress:
+  default:
+    enabled: false
+#    serviceName: service-name
+#    port: port-name
+#    labels:
+#      dns: "route53"
+#    annotations:
+#      kubernetes.io/ingress.class: nginx
+#      kubernetes.io/tls-acme: "true"
+#    hosts:
+#      "domain.com": /
+#      "www.domain.com": /
+#    tls:
+#    - secretName: server-tls
+#      hosts:
+#      - domain.com

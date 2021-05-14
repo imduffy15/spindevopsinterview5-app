@@ -1,0 +1,61 @@
+replicaCount: 3
+
+fullnameOverride: notejam-{{ .Values.color }}
+nameOverride: notejam-{{ .Values.color }}
+
+image:
+  repository: TODO
+  tag: latest
+
+secrets:
+  default:
+    enabled: true
+    mountPath: /config
+
+configMaps:
+  default:
+    enabled: true
+    env:
+       color: {{ .Values.color }}
+
+
+deployment:
+  enabled: true
+  affinity:
+    affinityRule: "ShouldBeOnDifferentNode"
+
+service:
+  enabled: true
+  type: ClusterIP
+  ports:
+    http:
+      internal: 8080
+      external: 80
+
+probes:
+ readinessProbe:
+   httpGet:
+     path: /
+     port: http
+   initialDelaySeconds: 15
+
+
+ingress:
+  default:
+    enabled: true
+    port: http
+    annotations:
+      nginx.ingress.kubernetes.io/affinity: "cookie"
+      nginx.ingress.kubernetes.io/session-cookie-name: "route"
+      nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+      nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    hosts:
+     "{{ .Values.color }}.chllng.ianduffy.ie": /
+     "{{ .Values.color }}-notejam.chllng.ianduffy.ie": /
+     "{{ .Values.color }}-www.chllng.ianduffy.ie": /
+    tls:
+    - secretName: certificates-wildcard-cert
+      hosts:
+      - {{ .Values.color }}.chllng.ianduffy.ie
+      - {{ .Values.color }}-notejam.chllng.ianduffy.ie
+      - {{ .Values.color }}-www.chllng.ianduffy.ie
