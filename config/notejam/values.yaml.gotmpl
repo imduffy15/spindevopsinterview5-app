@@ -45,11 +45,10 @@ ingress:
     enabled: true
     port: http
     annotations:
-      kubernetes.io/ingress.class: alb
-      # nginx.ingress.kubernetes.io/affinity: "cookie"
-      # nginx.ingress.kubernetes.io/session-cookie-name: "route"
-      # nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
-      # nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+      nginx.ingress.kubernetes.io/affinity: "cookie"
+      nginx.ingress.kubernetes.io/session-cookie-name: "route"
+      nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+      nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
     hosts:
      "{{ .Values.color }}.chllng.ianduffy.ie": /
      "{{ .Values.color }}-notejam.chllng.ianduffy.ie": /
